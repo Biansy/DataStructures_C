@@ -109,9 +109,19 @@ search_tree Delete(search_tree t, int x)
     return t;
 }
     
+static void In_Order(search_tree t)
+{
+    if (t != NULL)
+    {
+        In_Order(t->left);
+        printf("%d ", t->element);
+        In_Order(t->right);
+    }
+}
+
 int main()
 {
-    int arr[8] = {2,6,4,8,9,5,1,3};
+    int arr[8] = {6,2,4,8,9,5,1,3};
     search_tree tree = NULL;
 
     for (int i = 0; i < 8; i ++)
@@ -119,6 +129,9 @@ int main()
         tree = Inset(tree, arr[i]);
     }
 
+    In_Order(tree);
+
+    printf("\n");
     printf("Min:%d\n", Find_Min(tree)->element);
     printf("Max:%d\n", Find_Max(tree)->element);
 
